@@ -23,7 +23,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build /p:EnableWindowsTargeting=true --no-restore
     - name: Test
       run: dotnet test --logger trx --results-directory "Test-Build-NET-8.0.x"
     - name: Upload .NET test results
