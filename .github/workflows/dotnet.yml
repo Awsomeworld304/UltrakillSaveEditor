@@ -20,6 +20,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: debug
+      run: echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
     - name: Make artifact folder
       run: mkdir /Test-Build-NET
     - name: Restore dependencies
