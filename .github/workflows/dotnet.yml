@@ -34,6 +34,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: dotnet-results
-        path: /Test-Build-NET
+        path: /home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
