@@ -27,7 +27,7 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --os win --self-contained true --property:OutputPath="/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET" --no-restore
+      run: dotnet build ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --runtime win --self-contained true --property:OutputPath="/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET" --no-restore
     - name: Test
       run: dotnet test ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --logger trx --property:OutputPath="/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET"
     - name: Upload .NET build results
