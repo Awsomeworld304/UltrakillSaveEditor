@@ -21,15 +21,15 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: debug
-      run: echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"
+      run: echo "/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/"
     - name: Make artifact folder
-      run: mkdir /Test-Build-NET
+      run: mkdir /home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --property:OutputPath="/Test-Build-NET" --no-restore
+      run: dotnet build ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --property:OutputPath="/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET" --no-restore
     - name: Test
-      run: dotnet test ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --logger trx --property:OutputPath="/Test-Build-NET"
+      run: dotnet test ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --logger trx --property:OutputPath="/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET"
     - name: Upload .NET build results
       uses: actions/upload-artifact@v4
       with:
