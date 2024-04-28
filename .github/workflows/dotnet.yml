@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: debug
-      run: echo cd
+      run: cd
     - name: Make artifact folder
       run: mkdir .\Test-Build-NET
     - name: Restore dependencies
