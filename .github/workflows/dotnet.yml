@@ -21,9 +21,9 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: debug
-      run: echo "/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/"
+      run: echo cd
     - name: Make artifact folder
-      run: mkdir /home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET
+      run: mkdir .\Test-Build-NET
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
