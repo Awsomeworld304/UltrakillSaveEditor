@@ -1,4 +1,5 @@
 # UltrakillSaveEditor
+[![.NET](https://github.com/Awsomeworld304/UltrakillSaveEditor/actions/workflows/dotnet.yml/badge.svg?branch=master)](https://github.com/Awsomeworld304/UltrakillSaveEditor/actions/workflows/dotnet.yml)\
 A save editor for Ultrakill.
 ## Completion List
 - [x] Reads generalprogress.bepis
