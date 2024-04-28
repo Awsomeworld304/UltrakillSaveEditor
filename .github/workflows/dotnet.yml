@@ -21,17 +21,17 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Make artifact folder
-      run: mkdir ./Test-Build-NET-8.0.x
+      run: mkdir ./Test-Build-NET
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --property:OutputPath="./Test-Build-NET-8.0.x" --no-restore
+      run: dotnet build ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --property:OutputPath="./Test-Build-NET" --no-restore
     - name: Test
-      run: dotnet test --logger trx --property:OutputPath="./Test-Build-NET-8.0.x"
+      run: dotnet test ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --logger trx --property:OutputPath="./Test-Build-NET"
     - name: Upload .NET build results
       uses: actions/upload-artifact@v4
       with:
-        name: dotnet-results-8.0.x
-        path: ./Test-Build-NET-8.0.x
+        name: dotnet-results
+        path: ./Test-Build-NET
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
