@@ -12,6 +12,12 @@ namespace UltrakillSaveEditor
 {
     public class BepisParser
     {
+        public Globals.GeneralData data;
+        public BepisParser()
+        {
+            data = new Globals.GeneralData();
+        }
+
         enum SaveFile
         {
             GeneralProgress,
@@ -114,6 +120,7 @@ namespace UltrakillSaveEditor
             }
         }
 
+
         public void readSave()
         {
             Console.Clear();
@@ -129,7 +136,6 @@ namespace UltrakillSaveEditor
 
             // Phase 3 Read the file.
             Console.WriteLine("Reading save from " + Globals.Save.activeSlot + "...");
-            Globals.GeneralData data = new Globals.GeneralData();
 
             BinaryReader br;
 
@@ -259,19 +265,9 @@ namespace UltrakillSaveEditor
 
         }
 
-        void writeSave(byte[] save)
+        public void writeSave()
         {
-            byte[] result = save;
-            using (var ms = new MemoryStream())
-            {   // Expandable
-                var bw = new BinaryWriter(ms);
-
-                UInt32 len = 0x1337;
-                bw.Write(len);
-                // ...
-
-                result = ms.GetBuffer();   // Get the underlying byte array you've created.
-            }
+            
         }
     }
 
