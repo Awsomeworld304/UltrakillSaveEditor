@@ -15,25 +15,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v4.0.0
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: debug
-      run: echo "/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/"
     - name: Make artifact folder
-      run: mkdir /home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET
+      run: mkdir D:\a\UltrakillSaveEditor\UltrakillSaveEditor\Test-Build-NET
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --self-contained true --property:OutputPath="/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET" --no-restore
+      run: dotnet build ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --self-contained true --property:OutputPath="D:\a\UltrakillSaveEditor\UltrakillSaveEditor\Test-Build-NET" --no-restore
     - name: Test
-      run: dotnet test ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --logger trx --property:OutputPath="/home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET"
+      run: dotnet test ./UltrakillSaveEditor/UltrakillSaveEditor.csproj --logger trx --property:OutputPath="D:\a\UltrakillSaveEditor\UltrakillSaveEditor\Test-Build-NET"
     - name: Upload .NET build results
       uses: actions/upload-artifact@v4
       with:
         name: dotnet-results
-        path: /home/runner/work/UltrakillSaveEditor/UltrakillSaveEditor/Test-Build-NET
+        path: D:\a\UltrakillSaveEditor\UltrakillSaveEditor\Test-Build-NET
       # Use always() to always run this step to publish test results when there are test failures
       if: ${{ always() }}
