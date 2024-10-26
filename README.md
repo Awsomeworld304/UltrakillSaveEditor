@@ -21,4 +21,4 @@ Finally once the environment is finished initializing, just build it with the bu
 If you would like to contribute, i would be very greatful for your help!\
 But in order to do so, you should make a fork of this repo.\
 Then add your contribution, and send in a merge/pull request.\
-I'll review it, and if you're good, I'll merge yuour code in!
+I'll review it, and if you're good, I'll merge your code in!
