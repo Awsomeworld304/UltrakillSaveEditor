@@ -2,6 +2,14 @@ namespace UltrakillSaveEditor
 {
     public partial class Main : Form
     {
+        enum Status
+        {
+            READY,
+            BUSY,
+            SAVE,
+            LOAD,
+            UNKNOWN
+        }
         BepisParser bp;
         public Main()
         {
@@ -23,8 +31,32 @@ namespace UltrakillSaveEditor
             FileUtils.checkSaveDirectory(StatusLabel);
         }
 
+        private void changeStatus(Status status)
+        {
+            switch (status)
+            {
+                case Status.READY:
+                    StatusLabel.Text = "Status: Ready";
+                    break;
+                case Status.BUSY:
+                    StatusLabel.Text = "Status: Busy";
+                    break;
+                case Status.SAVE:
+                    StatusLabel.Text = "Status: Saving " + Globals.Save.activeSlot;
+                    break;
+                case Status.LOAD:
+                    StatusLabel.Text = "Status: Loading " + Globals.Save.activeSlot;
+                    break;
+                default:
+                    StatusLabel.Text = "Status: Unknown (Error?)";
+                    break;
+            }
+        }
+
         private void loadButton_Click(object sender, EventArgs e)
         {
+            changeStatus(Status.LOAD);
+            editPanel.Visible = true;
             bp.readSave();
 
             generalMoney.Text = bp.data.money.ToString();
@@ -47,13 +79,17 @@ namespace UltrakillSaveEditor
             generalToggles.SetItemCheckState(13, bp.data.rai1 ? CheckState.Checked : CheckState.Unchecked);
             generalToggles.SetItemCheckState(14, bp.data.rai2 ? CheckState.Checked : CheckState.Unchecked);
             generalToggles.SetItemCheckState(15, bp.data.rock0 ? CheckState.Checked : CheckState.Unchecked);
+            changeStatus(Status.READY);
         }
 
         private void Main_Load(object sender, EventArgs e)
         {
+            changeStatus(Status.UNKNOWN);
             moneyLabel.Visible = false;
             generalMoney.Visible = false;
             generalToggles.Visible = false;
+            editPanel.Visible = false;
+            changeStatus(Status.READY);
         }
 
         private void SaveModified_Click(object sender, EventArgs e)
@@ -186,6 +222,21 @@ namespace UltrakillSaveEditor
                     bp.data.rock1 = !bp.data.rock1;
                     break;
             }
+        }
+
+        private void moneyLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editPanel_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -120,7 +120,7 @@ namespace UltrakillSaveEditor
             }
         }
 
-
+        [Obsolete("readSave is the old, raw way to read the file. Please use the new way which uses class reading instead.")]
         public void readSave()
         {
             Console.Clear();

@@ -38,11 +38,11 @@
             slotLabel = new Label();
             title = new Label();
             editPanel = new Panel();
+            flags_label = new Label();
             moneyLabel = new Label();
             generalMoney = new TextBox();
             generalToggles = new CheckedListBox();
             dataSelector = new ComboBox();
-            button1 = new Button();
             StatusLabel = new Label();
             loadPanel.SuspendLayout();
             editPanel.SuspendLayout();
@@ -51,11 +51,11 @@
             // Version
             // 
             Version.AutoSize = true;
-            Version.Font = new Font("VCR OSD Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            Version.Font = new Font("VCR OSD Mono", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Version.ForeColor = Color.White;
             Version.Location = new Point(12, 9);
             Version.Name = "Version";
-            Version.Size = new Size(100, 17);
+            Version.Size = new Size(130, 22);
             Version.TabIndex = 0;
             Version.Text = "Version: 0";
             // 
@@ -64,9 +64,9 @@
             loadButton.AccessibleDescription = "Loads the save.";
             loadButton.AccessibleName = "Load Save Button.";
             loadButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            loadButton.Location = new Point(96, 303);
+            loadButton.Location = new Point(96, 447);
             loadButton.Name = "loadButton";
-            loadButton.Size = new Size(73, 21);
+            loadButton.Size = new Size(84, 36);
             loadButton.TabIndex = 1;
             loadButton.Text = "Load Save";
             loadButton.UseVisualStyleBackColor = true;
@@ -77,9 +77,9 @@
             SaveModified.AccessibleDescription = "Saves the new save.";
             SaveModified.AccessibleName = "Save button.";
             SaveModified.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            SaveModified.Location = new Point(97, 303);
+            SaveModified.Location = new Point(372, 447);
             SaveModified.Name = "SaveModified";
-            SaveModified.Size = new Size(73, 21);
+            SaveModified.Size = new Size(90, 36);
             SaveModified.TabIndex = 2;
             SaveModified.Text = "Save";
             SaveModified.UseVisualStyleBackColor = true;
@@ -90,9 +90,9 @@
             resetButton.AccessibleDescription = "Resets the modified save.";
             resetButton.AccessibleName = "Reset button.";
             resetButton.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            resetButton.Location = new Point(346, 397);
+            resetButton.Location = new Point(539, 606);
             resetButton.Name = "resetButton";
-            resetButton.Size = new Size(75, 23);
+            resetButton.Size = new Size(128, 44);
             resetButton.TabIndex = 3;
             resetButton.Text = "Reset Save";
             resetButton.UseVisualStyleBackColor = true;
@@ -108,7 +108,7 @@
             loadPanel.Controls.Add(loadButton);
             loadPanel.Location = new Point(34, 77);
             loadPanel.Name = "loadPanel";
-            loadPanel.Size = new Size(277, 343);
+            loadPanel.Size = new Size(288, 502);
             loadPanel.TabIndex = 5;
             // 
             // overWriteTemp
@@ -156,7 +156,7 @@
             title.AutoSize = true;
             title.Font = new Font("BroshKill", 47.9999924F);
             title.ForeColor = Color.Red;
-            title.Location = new Point(131, 10);
+            title.Location = new Point(346, 9);
             title.Name = "title";
             title.Size = new Size(533, 64);
             title.TabIndex = 6;
@@ -167,33 +167,47 @@
             // 
             editPanel.BackColor = Color.FromArgb(32, 0, 0);
             editPanel.BorderStyle = BorderStyle.FixedSingle;
+            editPanel.Controls.Add(flags_label);
             editPanel.Controls.Add(moneyLabel);
             editPanel.Controls.Add(generalMoney);
             editPanel.Controls.Add(generalToggles);
             editPanel.Controls.Add(dataSelector);
-            editPanel.Controls.Add(button1);
             editPanel.Controls.Add(SaveModified);
-            editPanel.Location = new Point(463, 77);
+            editPanel.Location = new Point(328, 77);
             editPanel.Name = "editPanel";
-            editPanel.Size = new Size(277, 343);
+            editPanel.Size = new Size(855, 502);
             editPanel.TabIndex = 6;
+            editPanel.Paint += editPanel_Paint;
+            // 
+            // flags_label
+            // 
+            flags_label.AutoSize = true;
+            flags_label.Font = new Font("VCR OSD Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            flags_label.ForeColor = Color.White;
+            flags_label.Location = new Point(-1, 103);
+            flags_label.Name = "flags_label";
+            flags_label.Size = new Size(62, 17);
+            flags_label.TabIndex = 7;
+            flags_label.Text = "Flags:";
+            flags_label.Click += label1_Click;
             // 
             // moneyLabel
             // 
             moneyLabel.AutoSize = true;
             moneyLabel.Font = new Font("VCR OSD Mono", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             moneyLabel.ForeColor = Color.White;
-            moneyLabel.Location = new Point(-1, 224);
+            moneyLabel.Location = new Point(-1, 42);
             moneyLabel.Name = "moneyLabel";
             moneyLabel.Size = new Size(72, 17);
             moneyLabel.TabIndex = 6;
             moneyLabel.Text = "Points:";
+            moneyLabel.Click += moneyLabel_Click;
             // 
             // generalMoney
             // 
             generalMoney.BackColor = Color.FromArgb(32, 0, 0);
             generalMoney.ForeColor = Color.White;
-            generalMoney.Location = new Point(3, 244);
+            generalMoney.Location = new Point(3, 62);
             generalMoney.MaxLength = 10;
             generalMoney.Name = "generalMoney";
             generalMoney.Size = new Size(269, 23);
@@ -203,13 +217,13 @@
             // generalToggles
             // 
             generalToggles.BackColor = Color.FromArgb(32, 0, 0);
-            generalToggles.Font = new Font("VCR OSD Mono", 12F);
+            generalToggles.Font = new Font("VCR OSD Mono", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             generalToggles.ForeColor = Color.White;
             generalToggles.FormattingEnabled = true;
-            generalToggles.Items.AddRange(new object[] { "Intro Seen", "Tutorial Completed", "Clash Mode Unlocked", "P-Revolver Unlocked", "SS-Revolver Unlocked", "MM-Revolver Unlocked", "Alt-Revolver Unlocked", "CE-Shotgun Unlocked", "PC-Shotgun Unlocked", "A-Nailgun Unlocked", "O-Nailgun Unlocked", "Alt-Nailgun Unlocked", "Elec-Railcannon Unlocked", "S-Railcannon Unlocked", "Mal-Railcannon Unlocked", "FF-R.Launcher Unlocked", "S.R.S. Launcher Unlocked" });
-            generalToggles.Location = new Point(1, 27);
+            generalToggles.Items.AddRange(new object[] { "Intro Seen", "Tutorial Completed", "Clash Mode Unlocked", "Piercer Revolver Unlocked", "Sharp Shooter Revolver Unlocked", "Marksman Revolver Unlocked", "Alternate Revolver Unlocked", "Core Eject Shotgun Unlocked", "Pump Charge Shotgun Unlocked", "Attractor Nailgun Unlocked", "Overheat Nailgun Unlocked", "Alternate Nailgun Unlocked", "Electric Railcannon Unlocked", "Screwdriver Railcannon Unlocked", "Malicious Railcannon Unlocked", "Freeze Frame Rocket Launcher Unlocked", "S.R.S. Cannon Rocket Launcher Unlocked" });
+            generalToggles.Location = new Point(1, 123);
             generalToggles.Name = "generalToggles";
-            generalToggles.Size = new Size(271, 166);
+            generalToggles.Size = new Size(853, 257);
             generalToggles.TabIndex = 4;
             generalToggles.SelectedIndexChanged += generalToggles_SelectedIndexChanged;
             // 
@@ -226,24 +240,12 @@
             dataSelector.TabIndex = 3;
             dataSelector.SelectedIndexChanged += dataSelector_SelectedIndexChanged;
             // 
-            // button1
-            // 
-            button1.AccessibleDescription = "Loads the save.";
-            button1.AccessibleName = "Load Save Button.";
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button1.Location = new Point(97, 349);
-            button1.Name = "button1";
-            button1.Size = new Size(150, 241);
-            button1.TabIndex = 1;
-            button1.Text = "Load Save";
-            button1.UseVisualStyleBackColor = true;
-            // 
             // StatusLabel
             // 
             StatusLabel.AutoSize = true;
             StatusLabel.Font = new Font("VCR OSD Mono", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             StatusLabel.ForeColor = SystemColors.Window;
-            StatusLabel.Location = new Point(2, 426);
+            StatusLabel.Location = new Point(12, 650);
             StatusLabel.Name = "StatusLabel";
             StatusLabel.Size = new Size(166, 22);
             StatusLabel.TabIndex = 7;
@@ -254,7 +256,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.Black;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1264, 681);
             Controls.Add(StatusLabel);
             Controls.Add(editPanel);
             Controls.Add(title);
@@ -285,7 +287,6 @@
         private Panel loadPanel;
         private Label title;
         private Panel editPanel;
-        private Button button1;
         private ComboBox slotSelect;
         private CheckBox overWriteTemp;
         private ComboBox dataSelector;
@@ -293,5 +294,6 @@
         private CheckedListBox generalToggles;
         private TextBox generalMoney;
         private Label moneyLabel;
+        private Label flags_label;
     }
 }
